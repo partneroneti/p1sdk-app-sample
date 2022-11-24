@@ -5,6 +5,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.projeto.photoface.CallLib;
 import com.projeto.photoface.callback.CallbackStatus;
 import com.projeto.photoface.entity.body.Document;
 import com.projeto.projetoexemplo.api.entity.body.AuthenticationBody;
@@ -42,7 +43,7 @@ public class ApiService {
     public static AuthObj authResponse;
     private static Cpf cpf = new Cpf();
     public static CpfResponse transaction;
-
+    public static String session;
     private static CallbackStatus callback;
 
     private static OnDocumentListener onDocumentListener;
@@ -111,6 +112,22 @@ public class ApiService {
         });
     }
 
+    public static void createSession(String deviceKey, Runnable onFinish){
+        Call<SessionLiveResponse> callSession = service.createSession(deviceKey, CallLib.createUserAgentForNewSession(),"Bearer " + authResponse.getObjectReturn().getAccessToken());
+        callSession.enqueue(new Callback<SessionLiveResponse>() {
+            @Override
+            public void onResponse(Call<SessionLiveResponse> call, Response<SessionLiveResponse> response) {
+                session = response.body().getObjectReturn().getSession();
+                onFinish.run();
+            }
+
+            @Override
+            public void onFailure(Call<SessionLiveResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
     public static void callTransaction(CallbackStatus callbackStatus) {
         Call<StatusObj> callStatus = service.checkStatus(
                 transaction.getTransactionId(),
@@ -173,7 +190,16 @@ public class ApiService {
         callSession.enqueue(new Callback<SessionLiveResponse>() {
             @Override
             public void onResponse(Call<SessionLiveResponse> call, Response<SessionLiveResponse> response) {
-                liveNess(faceScan, auditTrailImage, lowQualityAuditTrailImage);
+                //cria a sessao
+                createSession(ApiService.transaction.getDeviceKeyIdentifier(),
+                        new Runnable(){
+
+                            @Override
+                            public void run() {
+                                liveNess(faceScan, auditTrailImage, lowQualityAuditTrailImage);
+                            }
+                        });
+
             }
 
             @Override
@@ -194,7 +220,9 @@ public class ApiService {
         live.setFaceScan(faceScan);
         live.setAuditTrailImage(auditTrailImage);
         live.setLowQualityAuditTrailImage(lowQualityAuditTrailImage);
-
+        live.setSessionId(CallLib.createUserAgentForSession(session));
+        live.setDeviceKey(transaction.getDeviceKeyIdentifier());
+        new Gson().toJson(live);
         Call<LivenessResponse> callLive = service.liveness(live, "Bearer " + authResponse.getObjectReturn().getAccessToken());
         callLive.enqueue(new Callback<LivenessResponse>() {
             @Override

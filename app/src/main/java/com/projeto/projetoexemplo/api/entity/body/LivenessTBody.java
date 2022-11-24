@@ -6,6 +6,18 @@ public class LivenessTBody {
     private String faceScan;
     private String auditTrailImage;
     private String lowQualityAuditTrailImage;
+    private String sessionId;
+    private String deviceKey;
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+
 
     public String getTransactionId() {
         return transactionId;
@@ -40,4 +52,11 @@ public class LivenessTBody {
     }
 
 
+    public String getDeviceKey() {
+        return deviceKey;
+    }
+
+    public void setDeviceKey(String deviceKey) {
+        this.deviceKey = deviceKey;
+    }
 }

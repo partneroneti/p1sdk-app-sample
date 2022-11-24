@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    private void logDoc(List<com.projeto.photoface.entity.body.Document> documentList) {
+    private void logDoc(List<Document> documentList) {
         List<Document> list = documentList;
         list.get(0).getType();
 

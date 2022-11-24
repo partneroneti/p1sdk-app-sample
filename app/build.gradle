@@ -35,7 +35,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.google.code.gson:gson:2.9.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.github.partneroneti:p1sdk:1.1'
+    implementation 'com.github.partneroneti:p1sdk:1.1.1'
     implementation 'com.github.partneroneti:p1sdk-dep:1.1'
     testImplementation 'junit:junit:4.13.2'
 

@@ -37,4 +37,8 @@ public interface Request {
 
     @POST("liveness")
     Call<LivenessResponse> liveness(@Body LivenessTBody documentBody, @Header("Authorization") String auth);
+
+    @GET("session")
+    Call<SessionLiveResponse> createSession(@Header("X-Device-Key") String deviceKey,@Header("User-Agent") String userAgent,
+                               @Header("Authorization") String auth);
 }
