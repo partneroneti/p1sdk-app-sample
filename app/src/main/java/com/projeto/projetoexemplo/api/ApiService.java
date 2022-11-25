@@ -101,8 +101,22 @@ public class ApiService {
             public void onResponse(Call<CpfObj> call, Response<CpfObj> response) {
 
                 transaction = response.body().getObjectReturn();
-                callTransaction(() -> {
-                });
+
+                //cria a sessao
+                createSession(ApiService.transaction.getDeviceKeyIdentifier(),
+                        new Runnable(){
+
+                            @Override
+                            public void run() {
+
+                                callTransaction(() -> {
+                                });
+                            }
+                        });
+
+
+
+
             }
 
             @Override
@@ -113,7 +127,7 @@ public class ApiService {
     }
 
     public static void createSession(String deviceKey, Runnable onFinish){
-        Call<SessionLiveResponse> callSession = service.createSession(deviceKey, CallLib.createUserAgentForNewSession(),"Bearer " + authResponse.getObjectReturn().getAccessToken());
+        Call<SessionLiveResponse> callSession = service.createSession(deviceKey,"Bearer " + authResponse.getObjectReturn().getAccessToken());
         callSession.enqueue(new Callback<SessionLiveResponse>() {
             @Override
             public void onResponse(Call<SessionLiveResponse> call, Response<SessionLiveResponse> response) {
@@ -190,16 +204,7 @@ public class ApiService {
         callSession.enqueue(new Callback<SessionLiveResponse>() {
             @Override
             public void onResponse(Call<SessionLiveResponse> call, Response<SessionLiveResponse> response) {
-                //cria a sessao
-                createSession(ApiService.transaction.getDeviceKeyIdentifier(),
-                        new Runnable(){
-
-                            @Override
-                            public void run() {
-                                liveNess(faceScan, auditTrailImage, lowQualityAuditTrailImage);
-                            }
-                        });
-
+                liveNess(faceScan, auditTrailImage, lowQualityAuditTrailImage);
             }
 
             @Override

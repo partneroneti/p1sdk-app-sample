@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 mContext,
                 ApiService.transaction.getCertificate(),
                 ApiService.transaction.getDeviceKeyIdentifier(),
-                ApiService.transaction.getProductionKeyText()
+                ApiService.transaction.getProductionKeyText(),
+                ApiService.session
         );
     }
 
