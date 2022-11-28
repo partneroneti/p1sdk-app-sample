@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
     private void startPhotoFace() { // Inicializa a lib
         CallLib.startFaceCapture(
                 mContext,
-                ApiService.transaction.getCertificate(),
-                ApiService.transaction.getDeviceKeyIdentifier(),
-                ApiService.transaction.getProductionKeyText(),
+                ApiService.facetecCredentialsObj.getCertificate(),
+                ApiService.facetecCredentialsObj.getDeviceKeyIdentifier(),
+                ApiService.facetecCredentialsObj.getProductionKeyText(),
                 ApiService.session
         );
     }

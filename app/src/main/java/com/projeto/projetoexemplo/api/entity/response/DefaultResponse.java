@@ -1,12 +1,10 @@
 package com.projeto.projetoexemplo.api.entity.response;
 
-public class AuthObj {
-
-
+public abstract class DefaultResponse<T> {
     private Integer timeProcess;
     private Boolean success;
     private String message;
-    private AuthenticationResponse objectReturn;
+    private T objectReturn;
 
     public Integer getTimeProcess() {
         return timeProcess;
@@ -32,11 +30,11 @@ public class AuthObj {
         this.message = message;
     }
 
-    public AuthenticationResponse getObjectReturn() {
+    public T getObjectReturn() {
         return objectReturn;
     }
 
-    public void setObjectReturn(AuthenticationResponse objectReturn) {
+    public void setObjectReturn(T objectReturn) {
         this.objectReturn = objectReturn;
     }
 }

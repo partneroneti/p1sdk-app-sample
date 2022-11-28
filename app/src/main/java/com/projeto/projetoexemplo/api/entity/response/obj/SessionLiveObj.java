@@ -1,6 +1,6 @@
-package com.projeto.projetoexemplo.api.entity.response;
+package com.projeto.projetoexemplo.api.entity.response.obj;
 
-public class SessionLive {
+public class SessionLiveObj {
 
     private String session;
 

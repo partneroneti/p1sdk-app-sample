@@ -1,11 +1,14 @@
-package com.projeto.projetoexemplo.api.entity.response;
+package com.projeto.projetoexemplo.api.entity.response.obj;
 
-public class StatusObj {
+import com.projeto.projetoexemplo.api.entity.response.AuthenticationResponse;
+
+public class AuthObj {
+
 
     private Integer timeProcess;
     private Boolean success;
     private String message;
-    private StatusResponse objectReturn;
+    private AuthenticationResponse objectReturn;
 
     public Integer getTimeProcess() {
         return timeProcess;
@@ -31,12 +34,11 @@ public class StatusObj {
         this.message = message;
     }
 
-    public StatusResponse getObjectReturn() {
+    public AuthenticationResponse getObjectReturn() {
         return objectReturn;
     }
 
-    public void setObjectReturn(StatusResponse objectReturn) {
+    public void setObjectReturn(AuthenticationResponse objectReturn) {
         this.objectReturn = objectReturn;
     }
-
 }

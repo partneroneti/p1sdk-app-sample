@@ -1,4 +1,4 @@
-package com.projeto.projetoexemplo.api.entity.response;
+package com.projeto.projetoexemplo.api.entity.response.obj;
 
 public class StatusReturn {
 

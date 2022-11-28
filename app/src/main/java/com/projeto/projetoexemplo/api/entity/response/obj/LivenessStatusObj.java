@@ -1,6 +1,6 @@
-package com.projeto.projetoexemplo.api.entity.response;
+package com.projeto.projetoexemplo.api.entity.response.obj;
 
-public class LivenessStatusResponse {
+public class LivenessStatusObj {
     private Integer code;
     private String description;
 
