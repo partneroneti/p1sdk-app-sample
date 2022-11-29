@@ -6,9 +6,8 @@ import com.projeto.projetoexemplo.api.entity.body.Cpf;
 import com.projeto.projetoexemplo.api.entity.body.DocumentBody;
 import com.projeto.projetoexemplo.api.entity.body.LivenessTBody;
 import com.projeto.projetoexemplo.api.entity.response.FacetecCredentialsResponse;
-import com.projeto.projetoexemplo.api.entity.response.obj.AuthObj;
+import com.projeto.projetoexemplo.api.entity.response.AuthenticationResponse;
 import com.projeto.projetoexemplo.api.entity.response.obj.CpfObj;
-import com.projeto.projetoexemplo.api.entity.response.obj.FacetecCredentialsObj;
 import com.projeto.projetoexemplo.api.entity.response.LivenessResponse;
 import com.projeto.projetoexemplo.api.entity.response.SessionLiveResponse;
 import com.projeto.projetoexemplo.api.entity.response.StatusResponse;
@@ -23,7 +22,7 @@ import retrofit2.http.Path;
 public interface Request {
 
     @POST("authentication")
-    Call<AuthObj> authentication(@Body AuthenticationBody user);
+    Call<AuthenticationResponse> authentication(@Body AuthenticationBody user);
 
     @POST("transaction")
     Call<CpfObj> cpfStatus(@Body Cpf cpf, @Header("Authorization") String auth);

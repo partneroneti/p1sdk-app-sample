@@ -17,7 +17,7 @@ import com.projeto.projetoexemplo.api.entity.callback.OnFaceListener;
 import com.projeto.projetoexemplo.api.entity.request.Request;
 import com.projeto.projetoexemplo.api.entity.response.FacetecCredentialsResponse;
 import com.projeto.projetoexemplo.api.entity.response.obj.FacetecCredentialsObj;
-import com.projeto.projetoexemplo.api.entity.response.obj.AuthObj;
+import com.projeto.projetoexemplo.api.entity.response.AuthenticationResponse;
 import com.projeto.projetoexemplo.api.entity.response.obj.CpfObj;
 import com.projeto.projetoexemplo.api.entity.response.CpfResponse;
 import com.projeto.projetoexemplo.api.entity.response.LivenessResponse;
@@ -42,7 +42,7 @@ public class ApiService {
 
     public static Integer status;
 
-    public static AuthObj authResponse;
+    public static AuthenticationResponse authResponse;
     private static Cpf cpf = new Cpf();
     public static CpfResponse transaction;
     public static FacetecCredentialsObj facetecCredentialsObj;
@@ -80,18 +80,18 @@ public class ApiService {
         ab.setGrantType("password");
         ab.setPassword(password);
         ab.setUsername(user);
-        Call<AuthObj> callAuth = service.authentication(ab);
+        Call<AuthenticationResponse> callAuth = service.authentication(ab);
 
-        callAuth.enqueue(new Callback<AuthObj>() {
+        callAuth.enqueue(new Callback<AuthenticationResponse>() {
             @Override
-            public void onResponse(Call<AuthObj> call, Response<AuthObj> response) {
+            public void onResponse(Call<AuthenticationResponse> call, Response<AuthenticationResponse> response) {
 
                 authResponse = response.body();
                 callCpf();
             }
 
             @Override
-            public void onFailure(Call<AuthObj> call, Throwable t) {
+            public void onFailure(Call<AuthenticationResponse> call, Throwable t) {
                 Log.w(TAG, "onFailure");
             }
         });
