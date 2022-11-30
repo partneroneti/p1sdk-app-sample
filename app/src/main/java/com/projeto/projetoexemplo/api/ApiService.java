@@ -34,9 +34,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
-    private static final String baseUrl =  "https://integracao-sodexo-desenvolvimento.partner1.com.br/api/";
-    private static final String user = "admin";
-    private static final String password = "lalala";
+    private static final String baseUrl =  "";
+    private static final String user = "";
+    private static final String password = "";
 
     private static final Request service = getRetrofit(baseUrl).create(Request.class);
 
